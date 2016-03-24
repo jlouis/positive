@@ -30,21 +30,21 @@ all() ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -spec is_positive_test(config()) -> _.
-is_positive_test(Config) ->
+is_positive_test(_Config) ->
   PositiveNumbers = lists:seq(1,1000000),
   Results = lists:map(fun positive:is_positive/1, PositiveNumbers),
   true = lists:all(fun(Bool) -> Bool == true end, Results),
   {comment, ""}.
 
 -spec is_negative_test(config()) -> _.
-is_negative_test(Config) ->
+is_negative_test(_Config) ->
   NegativeNumbers = lists:seq(-1000000, -1),
   Results = lists:map(fun positive:is_positive/1, NegativeNumbers),
   true = lists:all(fun(Bool) -> Bool == false end, Results), 
   {comment, ""}.
 
 -spec is_not_integer_test(config()) -> _.
-is_not_integer_test(Config) ->
+is_not_integer_test(_Config) ->
   Letters = lists:seq($A, $z),
   Tuples  = module_info(exports),
   Atoms   = [Fun || {Fun, 1} <- module_info(exports)],
@@ -54,21 +54,21 @@ is_not_integer_test(Config) ->
   {comment, ""}.
 
 -spec 'is_really?_positive_test'(config()) -> _.
-'is_really?_positive_test'(Config) ->
+'is_really?_positive_test'(_Config) ->
   PositiveNumbers = lists:seq(1,1000000),
   Results = lists:map(fun positive:'really?'/1, PositiveNumbers),
   true = lists:all(fun(Bool) -> Bool == true end, Results),
   {comment, ""}.
 
 -spec 'is_really?_negative_test'(config()) -> _.
-'is_really?_negative_test'(Config) ->
+'is_really?_negative_test'(_Config) ->
   NegativeNumbers = lists:seq(-1000000, -1),
   Results = lists:map(fun positive:'really?'/1, NegativeNumbers),
   true = lists:all(fun(Bool) -> Bool == false end, Results), 
   {comment, ""}.
 
 -spec 'is_not_really?_integer_test'(config()) -> _.
-'is_not_really?_integer_test'(Config) ->
+'is_not_really?_integer_test'(_Config) ->
   Letters = lists:seq($A, $z),
   Tuples  = module_info(exports),
   Atoms   = [Fun || {Fun, 1} <- module_info(exports)],
