@@ -4,5 +4,3 @@
 is_positive(N) when is_integer(N) ->
     N > 0;
 is_positive(_) -> false.
-
-
