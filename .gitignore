@@ -1,0 +1,5 @@
+ebin
+logs
+positive.d
+*.beam
+test/*.beam
