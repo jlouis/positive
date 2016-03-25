@@ -2,6 +2,7 @@
 
 -export([all/0]).
 -export([is_positive_test/1
+	   , is_positive_but_not_integer_test/1
 	   , is_negative_test/1
 	   , is_not_integer_test/1
 	   , 'is_really?_positive_test'/1
@@ -36,6 +37,13 @@ is_positive_test(_Config) ->
   true = lists:all(fun(Bool) -> Bool == true end, Results),
   {comment, ""}.
 
+-spec is_positive_but_not_integer_test(config()) -> _.
+is_positive_but_not_integer_test(_Config) ->
+  PositiveButNotIntegers = [X + 0.1 || X <- lists:seq(1,1000000)],
+  Results = lists:map(fun positive:is_positive/1, PositiveButNotIntegers),
+  true = lists:all(fun(Bool) -> Bool == false end, Results),
+  {comment, ""}.
+
 -spec is_negative_test(config()) -> _.
 is_negative_test(_Config) ->
   NegativeNumbers = lists:seq(-1000000, -1),
@@ -48,7 +56,10 @@ is_not_integer_test(_Config) ->
   Letters = lists:seq($A, $z),
   Tuples  = module_info(exports),
   Atoms   = [Fun || {Fun, 1} <- module_info(exports)],
-  InputList = Letters ++ Tuples ++ Atoms,
+  PositiveButNotIntegers = [X + 0.1 || X <- lists:seq(1, 1000000)],
+  NegativeButNotIntegers = [X - 0.1 || X <- lists:seq(-100000, 0)],
+  InputList = Letters ++ Tuples ++ Atoms ++ PositiveButNotIntegers ++
+              NegativeButNotIntegers, 
   Results = lists:map(fun positive:is_positive/1, InputList),
   false   = lists:all(fun(Bool) -> Bool == true end, Results),
   {comment, ""}.
