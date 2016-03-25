@@ -1,6 +1,6 @@
 
 -module(positive).
--export([is_positive/1, 'really?'/1]).
+-export([is_positive/1, 'really?'/1, 'perhaps?'/1]).
 
 %% @doc Checks whether an integer is positive or not.
 -spec is_positive(any()) -> boolean().
