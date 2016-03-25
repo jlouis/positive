@@ -1,6 +1,6 @@
 language: erlang
 
-script: "make all; make tests"
+script: "make all tests"
 otp_release:
    - 18.2
 
