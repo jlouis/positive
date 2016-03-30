@@ -4,6 +4,8 @@
 %% use and test this freely without access to a full QuickCheck license. You can also
 %% relatively easily adapt the code to PropEr or Triq if you want to do so.
 
+-ifdef(EQC_TESTING).
+
 -include_lib("eqc/include/eqc.hrl").
 
 %% For convenience, it is often worth it to export everything from EQC modules:
@@ -46,3 +48,5 @@ prop_positive() ->
 
 eq(X, X) -> true;
 eq(X, Y) -> {X, '/=', Y}.
+
+-endif.
